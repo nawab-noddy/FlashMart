@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: FlashMart
+
+  # Points to your LOCAL MySQL installation
+  datasource:
+    url: jdbc:mysql://localhost:3306/flashmart?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: YOUR_LOCAL_MYSQL_PASSWORD # Change this to your actual local password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+  # Points to your ONLINE Redis database
+  data:
+    redis:
+      host: YOUR_ONLINE_REDIS_HOST # e.g., redis-12345.c1.us-east-1-2.ec2.cloud.redislabs.com
+      port: YOUR_ONLINE_REDIS_PORT # e.g., 12345
+      password: YOUR_ONLINE_REDIS_PASSWORD # If your online redis has a password
+
+  # Points to your ONLINE RabbitMQ (e.g., CloudAMQP)
+  rabbitmq:
+    host: YOUR_CLOUD_RABBITMQ_HOST # e.g., roedeer.rmq.cloudamqp.com
+    port: 5672
+    username: YOUR_CLOUD_RABBITMQ_USERNAME
+    password: YOUR_CLOUD_RABBITMQ_PASSWORD
+    virtual-host: YOUR_CLOUD_RABBITMQ_VHOST
