@@ -15,13 +15,11 @@ spring:
   # Points to your ONLINE Redis database
   data:
     redis:
-      host: ${YOUR_ONLINE_REDIS_HOST} # e.g., redis-12345.c1.us-east-1-2.ec2.cloud.redislabs.com
-      port: ${YOUR_ONLINE_REDIS_PORT} # e.g., 12345
-      password: ${YOUR_ONLINE_REDIS_PASSWORD} # If your online redis has a password
+      url: ${YOUR_ONLINE_REDIS_URL}
 
   # Points to your ONLINE RabbitMQ (e.g., CloudAMQP)
   rabbitmq:
-    host: ${YOUR_CLOUD_RABBITMQ_HOST} # e.g., roedeer.rmq.cloudamqp.com
+    host: ${YOUR_CLOUD_RABBITMQ_HOST  } # e.g., roedeer.rmq.cloudamqp.com
     port: 5672
     username: ${YOUR_CLOUD_RABBITMQ_USERNAME}
     password: ${YOUR_CLOUD_RABBITMQ_PASSWORD}
