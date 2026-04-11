@@ -1,6 +1,8 @@
 package com.inventory.FlashMart.service;
 
 import com.inventory.FlashMart.config.RabbitMQConfig;
+import com.inventory.FlashMart.dto.OrderEvent;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -9,10 +11,11 @@ import org.springframework.stereotype.Service;
 public class InventoryService {
 
     @Autowired
-    StringRedisTemplate stringRedisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
     @Autowired
-    private RabbitMQConfig rabbitMQConfig;
+    private RabbitTemplate rabbitTemplate;
+
 
     public boolean deductStock(){
         long updatedInventory = stringRedisTemplate.opsForValue().decrement("flashmart:inventory:iphone");
@@ -21,6 +24,18 @@ public class InventoryService {
             stringRedisTemplate.opsForValue().increment("flashmart:inventory:iphone");
         }
 
-        return updatedInventory >= 0;
+        if(updatedInventory >= 0) {
+            OrderEvent event = new OrderEvent();
+            event.setUserId("User1234");
+            event.setProductId("iPhone-Flash-Sale");
+            rabbitTemplate.convertAndSend(
+                    "order.exchange",
+                    "order.routing.key",
+                    event
+            );
+            return true;
+        }
+
+        return false;
     }
 }
