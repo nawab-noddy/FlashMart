@@ -19,8 +19,9 @@ spring:
 
   # Points to your ONLINE RabbitMQ (e.g., CloudAMQP)
   rabbitmq:
-    host: ${YOUR_CLOUD_RABBITMQ_HOST  } # e.g., roedeer.rmq.cloudamqp.com
-    port: 5672
-    username: ${YOUR_CLOUD_RABBITMQ_USERNAME}
-    password: ${YOUR_CLOUD_RABBITMQ_PASSWORD}
-    virtual-host: ${YOUR_CLOUD_RABBITMQ_VHOST}
+    url: ${YOUR_RABBITMQ_URL}
+#    host: ${YOUR_CLOUD_RABBITMQ_HOST  } # e.g., roedeer.rmq.cloudamqp.com
+#    port: 5672
+#    username: ${YOUR_CLOUD_RABBITMQ_USERNAME}
+#    password: ${YOUR_CLOUD_RABBITMQ_PASSWORD}
+#    virtual-host: ${YOUR_CLOUD_RABBITMQ_VHOST}
