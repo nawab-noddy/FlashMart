@@ -48,6 +48,9 @@ jobs:
           distribution: 'temurin'
           cache: 'maven' # Makes future builds much faster!
 
+      - name: 🔧 Grant execute permission to Maven
+        run: chmod +x ./mvnw
+
       - name: 🚀 Run Massive Stress Test & Compile
         # We trick Spring Boot into connecting to our temporary GitHub databases instead of the cloud!
         env:
